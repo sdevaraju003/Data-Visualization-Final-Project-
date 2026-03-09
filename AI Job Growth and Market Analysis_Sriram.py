@@ -8,9 +8,9 @@ df = pd.read_csv("ai_job_dataset.csv")
 df["posting_date"] = pd.to_datetime(df["posting_date"])
 df["month"] = df["posting_date"].dt.to_period("M").dt.to_timestamp()
 
-# ---------------------------------
+
 # Visualization 1: AI job postings by month
-# ---------------------------------
+
 jobs_month = df.groupby("month").size().sort_index()
 
 fig, ax = plt.subplots(figsize=(8, 5))
@@ -23,9 +23,9 @@ plt.tight_layout()
 plt.savefig("ai_jobs_by_month.png", dpi=300)
 plt.show()
 
-# ---------------------------------
+
 # Visualization 2: Average salary by experience level
-# ---------------------------------
+
 exp_order = ["EN", "MI", "SE", "EX"]
 exp_labels = {"EN": "Entry", "MI": "Mid", "SE": "Senior", "EX": "Executive"}
 
@@ -46,9 +46,9 @@ plt.tight_layout()
 plt.savefig("avg_salary_experience.png", dpi=300)
 plt.show()
 
-# ---------------------------------
+
 # Visualization 3: Top 10 required AI skills
-# ---------------------------------
+
 skills = df["required_skills"].str.split(",", expand=True).stack().str.strip()
 top_skills = skills.value_counts().head(10).sort_values()
 
